@@ -10,6 +10,7 @@ app.use(express.static('public'));
 
 app.use(expressLayout);
 app.set('layout', './layouts/main');
+app.set('views', './src/views')
 app.set('view engine', 'ejs');
 
 app.use('/', require('./server/routes/main'));
