@@ -59,3 +59,9 @@ body{
 .header_logo{
   display: flex;
 } 
+
+.searchBar {
+  visibility: hidden;
+  background-color: #1c1c1c;
+
+}
