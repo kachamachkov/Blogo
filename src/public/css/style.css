@@ -6,8 +6,19 @@
   box-sizing: border-box;
 }
 
+html {
+  font: 14px/1.5 'Poppins', sans-serif;
+}
+
 img {
   display: block;
   width: 8%;
   height: auto;
 }
+
+body{
+  color: #1c1c1c;
+  font-size: 1em;
+  background-color: #faf5ee;
+}
+
