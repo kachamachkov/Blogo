@@ -6,11 +6,11 @@ const expressLayout = require('express-ejs-layouts');
 const app = express();
 const PORT = 5500 || process.env.PORT;
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 app.use(expressLayout);
 app.set('layout', './layouts/main');
-app.set('views', './src/views')
+app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.use('/', require('./server/routes/main'));
