@@ -12,7 +12,7 @@ html {
 
 img {
   display: block;
-  width: 8%;
+  width: 100%;
   height: auto;
 }
 
@@ -22,3 +22,40 @@ body{
   background-color: #faf5ee;
 }
 
+.container{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.main{
+  padding: 1.5em 0;
+}
+
+.header{
+  padding-top: 2em;
+}
+
+.header_nav{
+  display: flex;
+  justify-content: space-between;
+}
+
+.header ul {
+  display: flex;
+  gap: 1.5em;
+}
+
+.header li {
+  list-style: none;
+}
+
+.header li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #1c1c1c;
+}
+
+.header_logo{
+  display: flex;
+} 
