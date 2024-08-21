@@ -1,14 +1,14 @@
 <div class="author">
-    <h1 class="author_heading">Hi, I am Boyan</h1>
-    <p class="author_body">Aspiring Web Developer</p>
+    <h1 class="author__heading">Hi, I am Boyan</h1>
+    <p class="author__body">Web Developer enthusiast! :)</p>
 </div>
 
-<img src="/img/blogo_main_picture.jpg" alt="person on iceberg background in Iceland" class="hero-image">
+<img src="/img/blogo_main_picture.jpg" alt="person on iceberg background in Iceland" class="hero-image" width="981" height="528">
 
 <section class="articles">
-    <h2 class="articles_heading">Latest Posts</h2>
+    <h2 class="articles__heading">Latest Posts</h2>
 
-    <ul class="articles_ul">
+    <ul class="articles-ul">
 
         <% data.forEach(post=> { %>
             <li>
@@ -16,7 +16,7 @@
                     <span>
                         <%= post.title %>
                     </span>
-                    <span class="article_list_date">
+                    <span class="article-list__date">
                         <%= post.createdAt.toDateString() %>
                     </span>
                 </a>
