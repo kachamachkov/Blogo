@@ -1,27 +1,31 @@
 <div class="author">
-  <h1 class="author_heading">Hi, I am Boyan</h1>
-  <p class="author_body">Aspiring Web Developer</p>
+    <h1 class="author_heading">Hi, I am Boyan</h1>
+    <p class="author_body">Aspiring Web Developer</p>
 </div>
 
-<img src="https://scontent.fsof11-1.fna.fbcdn.net/v/t39.30808-6/316117531_6612396225444258_7167073072455004307_n.jpg?stp=cp6_dst-jpg&_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=hgBClt1GNcgQ7kNvgH-GXm_&_nc_ht=scontent.fsof11-1.fna&oh=00_AYDOUPJxqAG4Jqnrpxd7doK4r7TZ2XmG6cHea-dk3TELow&oe=66C2413F" alt="persong looking out through window" class="hero-image"  >
+<img src="/img/blogo_main_picture.jpg" alt="person on iceberg background in Iceland" class="hero-image">
 
 <section class="articles">
-  <h2 class="articles_heading">Latest Posts</h2>
+    <h2 class="articles_heading">Latest Posts</h2>
 
-  <ul class="articles_ul">
+    <ul class="articles_ul">
 
-    <% data.forEach(post => { %>
-      <li>
-        <a href="#">
-          <span><%= post.title %></span>
-          <span class="article_list_date"><%= post.createdAt.toDateString() %></span>
-        </a>
-      </li>
-    <% }) %>
+        <% data.forEach(post=> { %>
+            <li>
+                <a href="#">
+                    <span>
+                        <%= post.title %>
+                    </span>
+                    <span class="article_list_date">
+                        <%= post.createdAt.toDateString() %>
+                    </span>
+                </a>
+            </li>
+            <% }) %>
 
 
 
-  </ul>
+    </ul>
 
-  <a href="#" class="pagination">&lt; View Older Posts</a>
+    <a href="#" class="pagination">&lt; View Older Posts</a>
 </section>
