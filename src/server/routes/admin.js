@@ -126,6 +126,40 @@ router.post('/add-post', authMiddleware, async (req, res) => {
 
 });
 
+router.get('/edit-post/:id', authMiddleware, async (req, res) => {
+    const locals = {
+        title: "Admin",
+        description: "Admin dashboard for Blogo"
+    };
+    try {
+        const data = await Post.findOne({ _id: req.params.id });
+
+        res.render('admin/edit-post', {
+            locals,
+            data,
+            layout: adminLayout
+        });
+    } catch (error) {
+        console.log(error);
+    }
+
+});
+
+router.put('/edit-post/:id', authMiddleware, async (req, res) => {
+
+    try {
+        await Post.findByIdAndUpdate(req.params.id, {
+            title: req.body.title,
+            body: req.body.body,
+            updatedAt: Date.now()
+        });
+
+        res.redirect(`/edit-post/${req.params.id}`);
+    } catch (error) {
+        console.log(error);
+    }
+
+});
 
 module.exports = router;
 
