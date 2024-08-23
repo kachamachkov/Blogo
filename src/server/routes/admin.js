@@ -69,7 +69,26 @@ router.post('/admin', async (req, res) => {
 
 
 router.get('/dashboard', authMiddleware, async (req, res) => {
-    res.render('admin/dashboard');
+
+    const locals = {
+        title: "Dashboard",
+        description: "Admin dashboard for Blogo"
+    };
+
+
+    try {
+        const data = await Post.find();
+        console.log(data)
+        res.render('admin/dashboard', {
+            locals,
+            data
+        });
+
+
+    } catch (error) {
+
+    }
+
 });
 
 
