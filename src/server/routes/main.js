@@ -21,7 +21,7 @@ router.get('', async (req, res) => {
 
         const count = await Post.countDocuments();
         const nextPage = parseInt(page) + 1;
-        const hasNextPage = nextPage <= Math.ceil(count / perPage)
+        const hasNextPage = nextPage <= Math.ceil(count / perPage);
 
 
         res.render('index', {
@@ -29,7 +29,8 @@ router.get('', async (req, res) => {
             data,
             current: page,
             nextPage: hasNextPage ? nextPage : null,
-        })
+            currentRoute: '/'
+        });
 
     } catch (error) {
         console.log(error);
@@ -40,32 +41,36 @@ router.get('', async (req, res) => {
 router.get('/posts/:id', async (req, res) => {
     const locals = {
         title: 'NodeJS Blogo',
-        description: 'Simple blog created with NodeJS, Express, MongoDB'
+        description: 'Simple blog created with NodeJS, Express, MongoDB',
     };
 
     try {
-        let postId = req.params.id
+        let postId = req.params.id;
 
-        const data = await Post.findById(postId)
+        const data = await Post.findById(postId);
 
-        res.render('post', { locals, data })
+        res.render('post', {
+            locals,
+            data,
+            currentRoute: `/posts/${postId}`
+        });
     } catch (error) {
 
     }
-})
+});
 
 
 router.post('/search', async (req, res) => {
     const locals = {
         title: 'NodeJS Blogo',
         description: 'Simple blog created with NodeJS, Express, MongoDB'
-    }
+    };
 
     try {
 
         let searchTerm = req.body.searchTerm;
-        const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g, "")
-        console.log(searchTerm)
+        const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g, "");
+        console.log(searchTerm);
 
         const data = await Post.find({
             $or: [
@@ -74,17 +79,25 @@ router.post('/search', async (req, res) => {
             ]
         });
 
-        res.render('search', { data, locals })
-        
+        res.render('search', { data, locals });
+
     } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
 
     }
-})
+});
 
 
 router.get('/about', (req, res) => {
-    res.render('about');
+    res.render('about',{
+        currentRoute: '/about'
+    });
+});
+
+router.get('/contact', (req, res) => {
+    res.render('contact',{
+        currentRoute: '/contact'
+    });
 });
 
 module.exports = router;
