@@ -10,6 +10,8 @@ const PORT = 5500 || process.env.PORT;
 
 connectDB();
 
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 app.use(express.static(__dirname + '/public'));
 
 app.use(expressLayout);
