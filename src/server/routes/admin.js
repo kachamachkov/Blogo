@@ -78,17 +78,38 @@ router.get('/dashboard', authMiddleware, async (req, res) => {
 
     try {
         const data = await Post.find();
-        console.log(data)
+        console.log(data);
         res.render('admin/dashboard', {
             locals,
-            data
+            data,
+            layout: adminLayout
         });
 
 
     } catch (error) {
-
+        console.log(error);
     }
 
+});
+
+router.get('/add-post', authMiddleware, async (req, res) => {
+    const locals = {
+        title: "Add Post",
+        description: "Page to create a new post"
+    };
+
+    try {
+
+        const data = await Post.find();
+
+        res.render('admin/add-post', {
+            locals,
+            layout: adminLayout,
+        });
+
+    } catch (error) {
+
+    }
 });
 
 
