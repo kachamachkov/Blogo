@@ -89,3 +89,84 @@ img {
     overflow: hidden;
     border-radius: var(--border-radius);
 }
+
+/* main header */
+.header {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    padding-top: 10px;
+    grid-template-areas:
+        "logo button"
+        "menu menu"
+    ;
+}
+
+@media only screen and (min-width: 768px) {
+    .header {
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas:
+            "logo menu button";
+    }
+}
+
+.header__logo {
+    grid-area: logo;
+    font-weight: 800;
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.header__logo:hover {
+    text-decoration: underline;
+}
+
+.header__nav {
+    grid-area: menu;
+    display: flex;
+    justify-content: center;
+}
+
+.header__button {
+    grid-area: button;
+    display: flex;
+    justify-content: end;
+}
+
+.header__button button {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+    border: 0;
+    padding: 6px 12px;
+    background: none;
+    border-radius: var(--border-radius);
+    border: 2px solid transparent;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--black);
+}
+
+.header__button button:hover {
+    border: 2px solid var(--black);
+}
+
+/* header -> nav */
+.header__nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+    font-weight: 600;
+    padding: 0;
+}
+
+
+.header__nav ul a {
+    padding: 10px;
+    text-decoration: none;
+}
+
+.header__nav ul a:hover {
+    text-decoration: underline;
+}
