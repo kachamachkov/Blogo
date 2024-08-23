@@ -12,10 +12,12 @@ router.get('', async (req, res) => {
         const data = await Post.find();
 
         res.render('index', { locals, data });
+        
     } catch (error) {
         console.log(error);
     }
 });
+
 
 
 

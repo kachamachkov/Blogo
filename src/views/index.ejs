@@ -3,16 +3,16 @@
     <p class="author__body">Web Developer enthusiast! :)</p>
 </div>
 
-<img src="/img/blogo_main_picture.jpg" alt="person on iceberg background in Iceland" class="hero-image" width="981" height="528">
+<img src="/img/blogo_main_picture.jpg" alt="person on iceberg background in Iceland" class="hero-image" width="981"
+    height="528">
 
 <section class="articles">
     <h2 class="articles__heading">Latest Posts</h2>
 
-    <ul class="articles-ul">
-
+    <ul class="article-ul">
         <% data.forEach(post=> { %>
             <li>
-                <a href="#">
+                <a href="/post/<%= post._id %>">
                     <span>
                         <%= post.title %>
                     </span>
@@ -22,9 +22,6 @@
                 </a>
             </li>
             <% }) %>
-
-
-
     </ul>
 
     <a href="#" class="pagination">&lt; View Older Posts</a>
