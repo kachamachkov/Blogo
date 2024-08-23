@@ -8,6 +8,22 @@ const User = require('../models/User');
 const adminLayout = '../views/layouts/admin';
 const jwtSecret = process.env.JWT_SECRET;
 
+const authMiddleware = (req, res, next) => {
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    try {
+        const decoded = jwt.verify(token, jwtSecret);
+        req.userId = decoded.userId;
+        next();
+    } catch (error) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+};
+
 router.get('/admin', (req, res) => {
     const locals = {
         title: "Admin",
@@ -52,7 +68,7 @@ router.post('/admin', async (req, res) => {
 
 
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', authMiddleware, async (req, res) => {
     res.render('admin/dashboard');
 });
 
