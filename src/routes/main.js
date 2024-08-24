@@ -104,10 +104,6 @@ router.get('/contact', (req, res) => {
     });
 });
 
-router.all('*', (req, res) => {
-    res.render('404', {
-        currentRoute: '/404'
-    });
-});
+
 
 module.exports = router;

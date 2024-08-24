@@ -11,7 +11,7 @@ const jwtSecret = process.env.JWT_SECRET;
 
 
 
-router.get('/admin', guestMiddleware, (req, res) => {
+router.get('/login', guestMiddleware, (req, res) => {
     const locals = {
         title: "Admin",
         description: "Admin dashboard for Blogo"
@@ -25,7 +25,7 @@ router.get('/admin', guestMiddleware, (req, res) => {
     }
 });
 
-router.post('/admin', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
