@@ -24,7 +24,16 @@ const authMiddleware = (req, res, next) => {
     }
 };
 
-router.get('/admin', (req, res) => {
+const guestMiddleware = (req, res, next) => {
+    const token = req.cookies.token;
+
+    if (token) {
+        return res.redirect('/dashboard');
+    }
+    next();
+};
+
+router.get('/admin', guestMiddleware, (req, res) => {
     const locals = {
         title: "Admin",
         description: "Admin dashboard for Blogo"
@@ -64,9 +73,6 @@ router.post('/admin', async (req, res) => {
     }
 
 });
-
-
-
 
 router.get('/dashboard', authMiddleware, async (req, res) => {
 
