@@ -344,3 +344,13 @@ img {
     justify-content: space-between;
     padding: 10px 0;
 }
+
+.not-found-page-container {
+    padding: 1rem;
+    text-align: center;
+    margin: 1rem;
+}
+
+.not-found-page-container p {
+    margin-bottom: 50px;
+}

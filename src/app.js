@@ -10,8 +10,8 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
 
-const connectDB = require('./server/config/db');
-const { isActiveRoute } = require('./server/helpers/routeHelpers');
+const connectDB = require('./config/db');
+const { isActiveRoute } = require('./helpers/routeHelpers');
 
 const app = express();
 const PORT = 5500 || process.env.PORT;
@@ -42,8 +42,8 @@ app.set('view engine', 'ejs');
 
 app.locals.isActiveRoute = isActiveRoute;
 
-app.use('/', require('./server/routes/main'));
-app.use('/', require('./server/routes/admin'));
+app.use('/', require('./routes/main'));
+app.use('/', require('./routes/admin'));
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
