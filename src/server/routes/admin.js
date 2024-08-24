@@ -99,8 +99,6 @@ router.get('/add-post', authMiddleware, async (req, res) => {
 
     try {
 
-        const data = await Post.find();
-
         res.render('admin/add-post', {
             locals,
             layout: adminLayout,
@@ -119,7 +117,7 @@ router.post('/add-post', authMiddleware, async (req, res) => {
         });
 
         await Post.create(newPost);
-        res.redirect('/dashboard');
+        res.redirect(`/posts/${newPost._id}`);
     } catch (error) {
         console.log(error);
     }
@@ -154,7 +152,7 @@ router.put('/edit-post/:id', authMiddleware, async (req, res) => {
             updatedAt: Date.now()
         });
 
-        res.redirect(`/edit-post/${req.params.id}`);
+        res.redirect(`/posts/${req.params.id}`);
     } catch (error) {
         console.log(error);
     }

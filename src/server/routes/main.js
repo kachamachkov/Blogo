@@ -4,7 +4,7 @@ const Post = require('../models/Post');
 router.get('', async (req, res) => {
 
     const locals = {
-        title: 'NodeJS Blogo',
+        title: 'Blogo',
         description: 'Simple blog created with NodeJS, Express, MongoDB'
     };
 
@@ -40,7 +40,7 @@ router.get('', async (req, res) => {
 
 router.get('/posts/:id', async (req, res) => {
     const locals = {
-        title: 'NodeJS Blogo',
+        title: 'Blogo',
         description: 'Simple blog created with NodeJS, Express, MongoDB',
     };
 
@@ -62,7 +62,7 @@ router.get('/posts/:id', async (req, res) => {
 
 router.post('/search', async (req, res) => {
     const locals = {
-        title: 'NodeJS Blogo',
+        title: 'Blogo',
         description: 'Simple blog created with NodeJS, Express, MongoDB'
     };
 
@@ -79,7 +79,11 @@ router.post('/search', async (req, res) => {
             ]
         });
 
-        res.render('search', { data, locals });
+        res.render('search', {
+            data,
+            locals,
+            currentRoute: '/search'
+        });
 
     } catch (error) {
         console.log(error.message);
@@ -89,13 +93,13 @@ router.post('/search', async (req, res) => {
 
 
 router.get('/about', (req, res) => {
-    res.render('about',{
+    res.render('about', {
         currentRoute: '/about'
     });
 });
 
 router.get('/contact', (req, res) => {
-    res.render('contact',{
+    res.render('contact', {
         currentRoute: '/contact'
     });
 });
