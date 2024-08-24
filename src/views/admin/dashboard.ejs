@@ -7,7 +7,6 @@
 
     <% data.forEach(post=> { %>
         <li>
-
             <a href="/posts/<%= post._id %>">
 
                 <%= post.title %> &nearr;
@@ -20,8 +19,7 @@
                     <input type="submit" value="Delete" class="btn">
                 </form>
             </div>
-
         </li>
-        <% }) %>
+    <% }) %>
 
 </ul>

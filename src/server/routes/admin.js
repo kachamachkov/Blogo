@@ -74,6 +74,7 @@ router.post('/admin', async (req, res) => {
 
 });
 
+
 router.get('/dashboard', authMiddleware, async (req, res) => {
 
     const locals = {

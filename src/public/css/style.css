@@ -27,14 +27,17 @@ a {
 
 h1 {
     font-size: var(--font-size-xl);
+    text-align: center;
 }
 
 h2 {
     font-size: var(--font-size-lg);
+    text-align: center;
 }
 
 h3 {
     font-size: var(--font-size-md);
+    text-align: center;
 }
 
 input[type="text"],
