@@ -285,8 +285,8 @@ img {
 .searchBar {
     visibility: hidden;
     transform: translateY(-100px);
-    background-color: var(--black);
-    padding: 4px 0;
+    background-color: var(--gray-light);
+    padding: 10px 0;
     position: absolute;
     left: 0;
     right: 0;
@@ -306,10 +306,14 @@ img {
 #searchClose {
     cursor: pointer;
     position: absolute;
-    top: 0;
-    right: 0;
-    color: var(--gray-light);
+    top: 8px;
+    right: 8px;
+    color: var(--black);
     padding: 15px;
+}
+
+.search__form input{
+    padding: 10px;
 }
 
 
