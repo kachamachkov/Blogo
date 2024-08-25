@@ -6,6 +6,8 @@ const jwtSecret = process.env.JWT_SECRET;
 const User = require('../models/User');
 const { getErrorMessage } = require('../helpers/getErrorMessage');
 const { guestMiddleware, authMiddleware } = require('../middlewares/authMiddleware');
+const adminLayout = '../views/layouts/admin';
+
 
 router.get('/login', guestMiddleware, (req, res) => {
     const locals = {
@@ -16,7 +18,7 @@ router.get('/login', guestMiddleware, (req, res) => {
     try {
         res.render('admin/index', { locals, layout: adminLayout });
 
-    } catch (err) {
+    } catch (error) {
         console.log(error.message);
         // TODO: Handle error for invalid credentials
         // res.render('/login', { error: getErrorMessage(err) });

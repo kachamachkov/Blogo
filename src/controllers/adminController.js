@@ -44,13 +44,23 @@ router.get('/add-post', authMiddleware, (req, res) => {
 
 router.post('/add-post', authMiddleware, async (req, res) => {
     try {
+        const title = req.body.title;
+        const body = req.body.body;
+
+        if (!title) {
+            throw new Error('Title is required!');
+        }
+        if (!body) {
+            throw new Error('Description is required!');
+        }
         const newPost = new Post({
-            title: req.body.title,
-            body: req.body.body,
+            title,
+            body
         });
 
         await Post.create(newPost);
         res.redirect(`/posts/${newPost._id}`);
+
     } catch (error) {
         // TODO: handle error
         console.log(error);
