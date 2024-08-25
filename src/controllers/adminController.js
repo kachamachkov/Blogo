@@ -89,9 +89,9 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
             data,
             layout: adminLayout
         });
-    } catch (error) {
-        // TODO: handle error
-        console.log(error);
+    } catch (err) {
+        console.log(err.message)
+        res.redirect('/');
     }
 });
 

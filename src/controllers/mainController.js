@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Post = require('../models/Post');
 
-router.get('', async (req, res) => {
+router.get('/', async (req, res) => {
     const locals = {
         title: 'Blogo',
         description: 'Simple blog created with NodeJS, Express, MongoDB'
@@ -28,9 +28,9 @@ router.get('', async (req, res) => {
             currentRoute: '/'
         });
 
-    } catch (error) {
-        // TODO: Handle error on search
-        console.log(error);
+    } catch (err) {
+        console.log(err.message);
+        res.redirect('/');
     }
 });
 
@@ -50,9 +50,9 @@ router.get('/posts/:id', async (req, res) => {
             data,
             currentRoute: `/posts/${postId}`
         });
-    } catch (error) {
-        // TODO: Handle error on search
-        console.log(error);
+    } catch (err) {
+        console.log(err.message);
+        res.redirect('/404');
     }
 });
 
@@ -63,9 +63,12 @@ router.post('/search', async (req, res) => {
     };
 
     try {
-        let searchTerm = req.body.searchTerm;
+        let searchTerm = req.body.searchTerm.trim();
+        
+        if(searchTerm == '') {
+            throw new Error('Please enter a search phrase...')
+        }
         const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g, "");
-        console.log(searchTerm);
 
         const data = await Post.find({
             $or: [
@@ -81,8 +84,13 @@ router.post('/search', async (req, res) => {
         });
 
     } catch (error) {
-        // TODO: Handle error on search
         console.log(error.message);
+
+        res.render('search', {
+            error,
+            locals,
+            currentRoute: '/search'
+        });
 
     }
 });
