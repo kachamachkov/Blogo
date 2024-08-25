@@ -8,13 +8,22 @@
 </div>
 
 <form action="/edit-post/<%= data._id %>?_method=PUT" method="POST">
+<!-- <form action="/edit-post/<%= data._id %>" method="POST"> -->
 
     <label for="title"><b>Title</b></label>
-    <input type="text" placeholder="Post Title" name="title" value="<%= data.title %>">
+    <input type="text" placeholder="Post Title" name="title" required value="<%= data.title %>">
 
     <label for="body"><b>Content</b></label>
-    <textarea name="body" cols="50" rows="10" placeholder="What's on your mind?"> <%= data.body %></textarea>
+    <textarea name="body" cols="50" rows="10" required placeholder="What's on your mind?"> <%= data.body %></textarea>
 
     <input type="submit" value="Update" class="btn">
+
+    <span>
+        <% if (typeof error !=='undefined' && error) { %>
+            <span class="error">
+                <%= error.message %>
+            </span>
+            <% } %>
+    </span>
 
 </form>

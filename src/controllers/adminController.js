@@ -2,7 +2,6 @@ const router = require('express').Router();
 
 const Post = require('../models/Post');
 const { authMiddleware } = require('../middlewares/authMiddleware');
-const { getErrorMessage } = require('../helpers/getErrorMessage');
 const adminLayout = '../views/layouts/admin';
 
 router.get('/dashboard', authMiddleware, async (req, res) => {
@@ -13,6 +12,9 @@ router.get('/dashboard', authMiddleware, async (req, res) => {
 
     try {
         const data = await Post.find();
+        if (data.length == 0) {
+            throw new Error('There are no posts yet! :)');
+        }
 
         res.render('admin/dashboard', {
             locals,
@@ -20,8 +22,14 @@ router.get('/dashboard', authMiddleware, async (req, res) => {
             layout: adminLayout
         });
 
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error);
+
+        res.render('admin/dashboard', {
+            error,
+            locals,
+            layout: adminLayout
+        });
     }
 });
 
@@ -38,7 +46,8 @@ router.get('/add-post', authMiddleware, (req, res) => {
         });
 
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
+        res.redirect('/');
     }
 });
 
@@ -90,23 +99,28 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
             layout: adminLayout
         });
     } catch (err) {
-        console.log(err.message)
-        res.redirect('/');
+        console.log(err.message);
+        res.redirect('/404');
     }
 });
 
 router.put('/edit-post/:id', authMiddleware, async (req, res) => {
+    const title = req.body.title.trim();
+    const body = req.body.body.trim();
+    const postId = req.params.id;
+
     try {
-        await Post.findByIdAndUpdate(req.params.id, {
-            title: req.body.title,
-            body: req.body.body,
+        await Post.findByIdAndUpdate(postId, {
+            title,
+            body,
             updatedAt: Date.now()
         });
 
-        res.redirect(`/posts/${req.params.id}`);
+        res.redirect(`/posts/${postId}`);
     } catch (error) {
-        // TODO: handle error
         console.log(error);
+        res.redirect(`/posts/${postId}`);
+
     }
 });
 
