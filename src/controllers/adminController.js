@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const Post = require('../models/Post');
 const { authMiddleware } = require('../middlewares/authMiddleware');
+const { getErrorMessage } = require('../helpers/getErrorMessage');
 const adminLayout = '../views/layouts/admin';
 
 router.get('/dashboard', authMiddleware, async (req, res) => {
@@ -12,15 +13,15 @@ router.get('/dashboard', authMiddleware, async (req, res) => {
 
     try {
         const data = await Post.find();
+
         res.render('admin/dashboard', {
             locals,
             data,
             layout: adminLayout
         });
 
-    } catch (error) {
-        // TODO: handle error
-        console.log(error);
+    } catch (err) {
+        console.log(err);
     }
 });
 
@@ -37,21 +38,25 @@ router.get('/add-post', authMiddleware, (req, res) => {
         });
 
     } catch (error) {
-        // TODO: handle error
         console.log(error);
     }
 });
 
 router.post('/add-post', authMiddleware, async (req, res) => {
+    const locals = {
+        title: "Add Post",
+        description: "Page to create a new post"
+    };
+
     try {
-        const title = req.body.title;
-        const body = req.body.body;
+        const title = req.body.title.trim();
+        const body = req.body.body.trim();
 
         if (!title) {
             throw new Error('Title is required!');
         }
         if (!body) {
-            throw new Error('Description is required!');
+            throw new Error('Content is required!');
         }
         const newPost = new Post({
             title,
@@ -61,9 +66,12 @@ router.post('/add-post', authMiddleware, async (req, res) => {
         await Post.create(newPost);
         res.redirect(`/posts/${newPost._id}`);
 
-    } catch (error) {
-        // TODO: handle error
-        console.log(error);
+    } catch (err) {
+        res.render('admin/add-post', {
+            locals,
+            error: err,
+            layout: adminLayout
+        });
     }
 });
 

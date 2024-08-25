@@ -312,7 +312,7 @@ img {
     padding: 15px;
 }
 
-.search__form input{
+.search__form input {
     padding: 10px;
 }
 
@@ -358,4 +358,9 @@ img {
 
 .not-found-page-container p {
     margin-bottom: 50px;
+}
+
+
+.error {
+    color: var(--red);
 }
