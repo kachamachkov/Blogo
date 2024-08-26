@@ -240,9 +240,8 @@ img {
 }
 
 .article-ul li {
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
-    transition: filter 0.1s;
 }
 
 .article-ul li:not(:last-child) {
@@ -250,11 +249,8 @@ img {
 }
 
 .article-ul li:hover {
-    filter: none;
-}
+    text-decoration: underline;
 
-.article-ul:hover li {
-    filter: blur(3px);
 }
 
 .article-ul:hover li:hover {
