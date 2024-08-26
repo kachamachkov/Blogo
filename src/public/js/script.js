@@ -23,51 +23,48 @@ document.addEventListener('DOMContentLoaded', function () {
         searchInput.focus();
     });
 
-    // Function to handle modal display and form submission
     function setupModal(deleteButton, modalId, formId) {
-        var modal = document.getElementById(modalId);
-        var closeBtn = modal.querySelector(".close");
-        var cancelBtn = modal.querySelector(".cancelDelete");
-        var confirmDeleteBtn = modal.querySelector(".confirmDelete");
-        var deleteForm = document.getElementById(formId);
+        const modal = document.getElementById(modalId);
+        const closeBtn = modal.querySelector('.close');
+        const cancelBtn = modal.querySelector('.cancelDelete');
+        const confirmDeleteBtn = modal.querySelector('.confirmDelete');
+        const deleteForm = document.getElementById(formId);
 
         if (deleteButton && modal && deleteForm) {
-            deleteButton.addEventListener("click", function (event) {
+            deleteButton.addEventListener('click', function (event) {
                 event.preventDefault();
-                modal.style.display = "block";
+                modal.style.display = 'block';
             });
 
-            closeBtn.addEventListener("click", function () {
-                modal.style.display = "none";
+            closeBtn.addEventListener('click', function () {
+                modal.style.display = 'none';
             });
 
-            cancelBtn.addEventListener("click", function () {
-                modal.style.display = "none";
+            cancelBtn.addEventListener('click', function () {
+                modal.style.display = 'none';
             });
 
-            confirmDeleteBtn.addEventListener("click", function () {
+            confirmDeleteBtn.addEventListener('click', function () {
                 deleteForm.submit();
             });
 
-            window.addEventListener("click", function (event) {
+            window.addEventListener('click', function (event) {
                 if (event.target === modal) {
-                    modal.style.display = "none";
+                    modal.style.display = 'none';
                 }
             });
         }
     }
 
-    // Handle multiple modals on the dashboard
-    var deleteButtons = document.querySelectorAll(".openDeleteModal");
+    const deleteButtons = document.querySelectorAll('.openDeleteModal');
     deleteButtons.forEach(function (button) {
-        var postId = button.getAttribute("data-post-id");
-        setupModal(button, "deleteModal-" + postId, "deleteForm-" + postId);
+        const postId = button.getAttribute('data-post-id');
+        setupModal(button, 'deleteModal-' + postId, 'deleteForm-' + postId);
     });
 
-    // Handle single post modal
-    var singleDeleteBtn = document.getElementById("openDeleteModal");
+    const singleDeleteBtn = document.getElementById('openDeleteModal');
     if (singleDeleteBtn) {
-        setupModal(singleDeleteBtn, "deleteModal", "deleteForm");
+        setupModal(singleDeleteBtn, 'deleteModal', 'deleteForm');
     }
 });
 
