@@ -1,14 +1,14 @@
 # Blogo - Boyan's personal Blog :writing_hand:	:man:	
 
-### I've created this project in order to showcase my MPA creation skills with the use of the following technologies
+### I've created this multi page app. (MPA) in order to showcase my skills with the use of the following technologies
 -   NodeJS
 -   Express
 -   EJS
 -   Mongoose
 -   MongoDB
 
-### Supported FEATURES
-- Full CRUD support (for admin only), built-in admin credentials
+### Features
+- :white_check_mark: Full CRUD support (for admin only), built-in admin credentials
   - :warning: For testing, please use:
     - username: admin
     - password: admin
