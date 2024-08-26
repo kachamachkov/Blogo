@@ -69,7 +69,7 @@ router.post('/search', async (req, res) => {
         let searchTerm = req.body.searchTerm.trim();
 
         if (searchTerm == '') {
-            throw new Error('Please enter a search phrase...');
+            throw new Error('Please enter a search phrase.');
         }
         const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g, "");
 
@@ -79,6 +79,10 @@ router.post('/search', async (req, res) => {
                 { body: { $regex: new RegExp(searchNoSpecialChar, 'i') } }
             ]
         });
+
+        if(data.length == 0){
+            throw new Error('Sorry, no posts matched your search. Please try again.')
+        }
 
         res.render('search', {
             data,
