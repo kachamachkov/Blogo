@@ -8,7 +8,6 @@
 </div>
 
 <form action="/edit-post/<%= data._id %>?_method=PUT" method="POST">
-<!-- <form action="/edit-post/<%= data._id %>" method="POST"> -->
 
     <label for="title"><b>Title</b></label>
     <input type="text" placeholder="Post Title" name="title" required value="<%= data.title %>">
@@ -23,7 +22,7 @@
             <span class="error">
                 <%= error.message %>
             </span>
-            <% } %>
+        <% } %>
     </span>
 
 </form>

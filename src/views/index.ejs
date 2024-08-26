@@ -6,7 +6,6 @@
 <img src="/img/blogo_main_picture.jpg" alt="person on iceberg background in Iceland" class="hero-image">
 
 <section class="articles">
-    <!-- <a href="/" class="articles__heading">Latest Posts</a> -->
     <h2 class="articles__heading">Latest Posts</h2>
 
     <ul class="article-ul">
@@ -21,7 +20,7 @@
                     </span>
                 </a>
             </li>
-            <% }) %>
+        <% }) %>
     </ul>
 
     <% if (nextPage !==null) { %>
@@ -29,4 +28,4 @@
 
         <% } else { %>
             <a href="/?page=<%= nextPage +1 %>" class="pagination"> View Newer Posts &gt;</a>
-            <% } %>
+        <% } %>
