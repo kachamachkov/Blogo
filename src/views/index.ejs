@@ -32,9 +32,14 @@
                     <% }) %>
             </ul>
 
-            <% if (nextPage !==null) { %>
-                <a href="/?page=<%= nextPage %>" class="pagination">&lt; View Older Posts</a>
-
-                <% } else { %>
-                    <a href="/?page=<%= nextPage +1 %>" class="pagination"> View Newer Posts &gt;</a>
+                <div class="pagination-container">
+                    <% if (nextPage !== null) { %>
+                        <a href="/?page=<%= nextPage %>" class="pagination"> &lt; View Older Posts </a>
                     <% } %>
+                    
+                    <% if (prevPage !== null) { %>
+                        <a href="/?page=<%= prevPage %>" class="pagination"> View Newer Posts &gt;</a>
+                    <% } %>
+                
+                    
+                </div>

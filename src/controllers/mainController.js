@@ -18,12 +18,15 @@ router.get('/', async (req, res) => {
 
         const count = await Post.countDocuments();
         const nextPage = parseInt(page) + 1;
+        const prevPage = parseInt(page) - 1;
         const hasNextPage = nextPage <= Math.ceil(count / perPage);
+        const hasPrevPage = prevPage >= 1;
 
         res.render('index', {
             locals,
             data,
             current: page,
+            prevPage: hasPrevPage ? prevPage : null,
             nextPage: hasNextPage ? nextPage : null,
             currentRoute: '/'
         });
@@ -64,9 +67,9 @@ router.post('/search', async (req, res) => {
 
     try {
         let searchTerm = req.body.searchTerm.trim();
-        
-        if(searchTerm == '') {
-            throw new Error('Please enter a search phrase...')
+
+        if (searchTerm == '') {
+            throw new Error('Please enter a search phrase...');
         }
         const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g, "");
 

@@ -267,10 +267,14 @@ img {
     text-decoration: none;
     margin-top: 40px;
     display: inline-block;
+    background-color: var(--black);
+    color: var(--gray-light);
+    padding: 10px;
+    margin-right: 20px;
 }
 
 .pagination:hover {
-    color: var(--black);
+    color: var(--gray);
 }
 
 /* footer */
