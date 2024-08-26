@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 const jwtSecret = process.env.JWT_SECRET;
 
 const User = require('../models/User');
-// const { getErrorMessage } = require('../helpers/getErrorMessage');
 const { guestMiddleware, authMiddleware } = require('../middlewares/authMiddleware');
 const adminLayout = '../views/layouts/admin';
 
