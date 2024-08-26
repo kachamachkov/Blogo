@@ -16,28 +16,28 @@ router.get('/login', guestMiddleware, (req, res) => {
     };
 
     try {
-        res.render('admin/index', { locals, layout: adminLayout });
+        res.render('admin/login', { locals, layout: adminLayout });
 
     } catch (error) {
         console.log(error.message);
-        // TODO: Handle error for invalid credentials
-        // res.render('/login', { error: getErrorMessage(err) });
     }
 });
 
 router.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
     try {
-        const { username, password } = req.body;
         const user = await User.findOne({ username });
 
+
         if (!user) {
-            return res.status(401).json({ message: 'Invalid credentials' });
+            throw new Error('Invalid Credentials!');
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
         if (!isPasswordValid) {
-            return res.status(401).json({ message: 'Invalid credentials' });
+            throw new Error('Invalid Credentials!');
         }
 
         const token = jwt.sign({ userId: user._id }, jwtSecret);
@@ -49,6 +49,12 @@ router.post('/login', async (req, res) => {
     } catch (error) {
         // TODO: handle error on login
         console.log(error.message);
+        res.render('admin/login', {
+
+            error,
+            layout: adminLayout
+        });
+
     }
 
 });

@@ -28,8 +28,8 @@ router.get('/', async (req, res) => {
             currentRoute: '/'
         });
 
-    } catch (err) {
-        console.log(err.message);
+    } catch (error) {
+        console.log(error.message);
         res.redirect('/');
     }
 });
@@ -50,8 +50,8 @@ router.get('/posts/:id', async (req, res) => {
             data,
             currentRoute: `/posts/${postId}`
         });
-    } catch (err) {
-        console.log(err.message);
+    } catch (error) {
+        console.log(error.message);
         res.redirect('/404');
     }
 });

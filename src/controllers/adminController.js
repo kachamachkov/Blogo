@@ -75,10 +75,10 @@ router.post('/add-post', authMiddleware, async (req, res) => {
         await Post.create(newPost);
         res.redirect(`/posts/${newPost._id}`);
 
-    } catch (err) {
+    } catch (error) {
         res.render('admin/add-post', {
             locals,
-            error: err,
+            error,
             layout: adminLayout
         });
     }
@@ -98,8 +98,8 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
             data,
             layout: adminLayout
         });
-    } catch (err) {
-        console.log(err.message);
+    } catch (error) {
+        console.log(error.message);
         res.redirect('/404');
     }
 });
@@ -129,7 +129,6 @@ router.delete('/delete-post/:id', authMiddleware, async (req, res) => {
         await Post.deleteOne({ _id: req.params.id });
         res.redirect('/dashboard');
     } catch (error) {
-        // TODO: handle error
         console.log(error);
     }
 });
