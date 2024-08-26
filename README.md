@@ -28,5 +28,8 @@ npm run dev
 
 #### Images
 
-![](./src/public//img/demo-picture.jpeg)
+![](./src/public//img/demo-picture.png)
 ![](./src/public//img/demo-picture2.png)
+![](./src/public//img/demo-picture3.png)
+![](./src/public//img/demo-picture4.png)
+![](./src/public//img/demo-picture5.png)
