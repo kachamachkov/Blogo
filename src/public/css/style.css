@@ -420,3 +420,14 @@ img {
     cursor: pointer;
   }
   
+  .last-edit{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .last-edit span{
+    white-space: initial;
+    margin-right: 10px;
+    font-weight: bold;
+  }
