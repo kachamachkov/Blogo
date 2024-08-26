@@ -3,16 +3,34 @@
 </h1>
 <article class="article">
 
-    <%= data.body %>
+    <div>
+        <%= data.body %>
+    </div>
 
-        <div>
-            <span><i>Last edited:</i></span>
-            <span>
-                <i>
-                    <%= data.updatedAt.toDateString() %>
-                </i>
-            </span>
+    <div>
+        <span><i>Last edited:</i></span>
+        <span><i>
+                <%= data.updatedAt.toDateString() %>
+            </i></span>
+    </div>
 
+    <div class="admin-post-controls">
+        <a href="/edit-post/<%= data._id %>" class="btn">Edit</a>
+
+        <!-- Unique delete button for the post -->
+        <button type="button" class="btn" id="openDeleteModal">Delete</button>
+
+        <!-- Unique delete modal for the post -->
+        <div id="deleteModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Are you sure you want to delete this post?</h2>
+                <form id="deleteForm" action="/delete-post/<%= data._id %>?_method=DELETE" method="POST">
+                    <button type="button" class="btn confirmDelete">Yes, Delete</button>
+                    <button type="button" class="btn cancelDelete">Cancel</button>
+                </form>
+            </div>
         </div>
+    </div>
 
 </article>
