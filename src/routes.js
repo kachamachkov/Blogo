@@ -4,8 +4,8 @@ const mainController = require('./controllers/mainController');
 const authController = require('./controllers/authController');
 const adminController = require('./controllers/adminController');
 
-router.use(mainController);
 router.use(authController);
+router.use(mainController);
 router.use(adminController);
 
 router.all('*', (req, res) => {

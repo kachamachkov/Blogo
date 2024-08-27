@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Post = require('../models/Post');
 
 router.get('/', async (req, res) => {
-    const locals = {
+    const localsInfo = {
         title: 'Blogo',
         description: 'Simple blog created with NodeJS, Express, MongoDB'
     };
@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
         const hasPrevPage = prevPage >= 1;
 
         res.render('index', {
-            locals,
+            localsInfo,
             data,
             current: page,
             prevPage: hasPrevPage ? prevPage : null,
@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/posts/:id', async (req, res) => {
-    const locals = {
+    const localsInfo = {
         title: 'Blogo',
         description: 'Simple blog created with NodeJS, Express, MongoDB',
     };
@@ -49,7 +49,7 @@ router.get('/posts/:id', async (req, res) => {
         const data = await Post.findById(postId);
 
         res.render('post', {
-            locals,
+            localsInfo,
             data,
             currentRoute: `/posts/${postId}`
         });
@@ -60,13 +60,14 @@ router.get('/posts/:id', async (req, res) => {
 });
 
 router.post('/search', async (req, res) => {
-    const locals = {
+    const localsInfo = {
         title: 'Blogo',
         description: 'Simple blog created with NodeJS, Express, MongoDB'
     };
 
     try {
         let searchTerm = req.body.searchTerm.trim();
+        console.log(searchTerm);
 
         if (searchTerm == '') {
             throw new Error('Please enter a search phrase.');
@@ -80,13 +81,13 @@ router.post('/search', async (req, res) => {
             ]
         });
 
-        if(data.length == 0){
-            throw new Error('Sorry, no posts matched your search. Please try again.')
+        if (data.length == 0) {
+            throw new Error('Sorry, no posts matched your search. Please try again.');
         }
 
         res.render('search', {
             data,
-            locals,
+            localsInfo,
             currentRoute: '/search'
         });
 
@@ -95,7 +96,7 @@ router.post('/search', async (req, res) => {
 
         res.render('search', {
             error,
-            locals,
+            localsInfo,
             currentRoute: '/search'
         });
 

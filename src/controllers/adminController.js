@@ -1,11 +1,10 @@
 const router = require('express').Router();
 
+const { isAuth } = require('../middlewares/authMiddleware');
 const Post = require('../models/Post');
-const { authMiddleware } = require('../middlewares/authMiddleware');
-const adminLayout = '../views/layouts/admin';
 
-router.get('/dashboard', authMiddleware, async (req, res) => {
-    const locals = {
+router.get('/dashboard', isAuth, async (req, res) => {
+    const localsInfo = {
         title: "Dashboard",
         description: "Admin dashboard for Blogo"
     };
@@ -17,9 +16,9 @@ router.get('/dashboard', authMiddleware, async (req, res) => {
         }
 
         res.render('admin/dashboard', {
-            locals,
+            localsInfo,
             data,
-            layout: adminLayout
+            currentRoute: '/dashboard'
         });
 
     } catch (error) {
@@ -27,22 +26,23 @@ router.get('/dashboard', authMiddleware, async (req, res) => {
 
         res.render('admin/dashboard', {
             error,
-            locals,
-            layout: adminLayout
+            localsInfo,
+            currentRoute: '/dashboard'
+            
         });
     }
 });
 
-router.get('/add-post', authMiddleware, (req, res) => {
-    const locals = {
+router.get('/add-post', isAuth, (req, res) => {
+    const localsInfo = {
         title: "Add Post",
         description: "Page to create a new post"
     };
 
     try {
         res.render('admin/add-post', {
-            locals,
-            layout: adminLayout,
+            localsInfo,
+            currentRoute: '/add-post'
         });
 
     } catch (error) {
@@ -51,8 +51,8 @@ router.get('/add-post', authMiddleware, (req, res) => {
     }
 });
 
-router.post('/add-post', authMiddleware, async (req, res) => {
-    const locals = {
+router.post('/add-post', isAuth, async (req, res) => {
+    const localsInfo = {
         title: "Add Post",
         description: "Page to create a new post"
     };
@@ -77,15 +77,15 @@ router.post('/add-post', authMiddleware, async (req, res) => {
 
     } catch (error) {
         res.render('admin/add-post', {
-            locals,
+            localsInfo,
             error,
-            layout: adminLayout
+            currentRoute: '/add-post'
         });
     }
 });
 
-router.get('/edit-post/:id', authMiddleware, async (req, res) => {
-    const locals = {
+router.get('/edit-post/:id', isAuth, async (req, res) => {
+    const localsInfo = {
         title: "Admin",
         description: "Admin dashboard for Blogo"
     };
@@ -94,9 +94,9 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
         const data = await Post.findOne({ _id: req.params.id });
 
         res.render('admin/edit-post', {
-            locals,
+            localsInfo,
             data,
-            layout: adminLayout
+            currentRoute: '/edit-post'
         });
     } catch (error) {
         console.log(error.message);
@@ -104,7 +104,7 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
     }
 });
 
-router.put('/edit-post/:id', authMiddleware, async (req, res) => {
+router.put('/edit-post/:id', isAuth, async (req, res) => {
     const title = req.body.title.trim();
     const body = req.body.body.trim();
     const postId = req.params.id;
@@ -124,7 +124,7 @@ router.put('/edit-post/:id', authMiddleware, async (req, res) => {
     }
 });
 
-router.delete('/delete-post/:id', authMiddleware, async (req, res) => {
+router.delete('/delete-post/:id', isAuth, async (req, res) => {
     try {
         await Post.deleteOne({ _id: req.params.id });
         res.redirect('/dashboard');

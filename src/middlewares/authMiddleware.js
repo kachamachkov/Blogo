@@ -2,31 +2,45 @@ const jwtSecret = process.env.JWT_SECRET;
 const jwt = require('jsonwebtoken');
 
 const authMiddleware = (req, res, next) => {
-    const token = req.cookies.token;
+    const token = req.cookies['token'];
 
     if (!token) {
-        return res.status(401).redirect('/login');
+        return next();
     }
 
     try {
-        const decoded = jwt.verify(token, jwtSecret);
-        req.userId = decoded.userId;
+        const decodedToken = jwt.verify(token, jwtSecret);
+
+        req.token = decodedToken;
+        res.locals.isAuthenticated = true;
+        res.locals.token = decodedToken;
+
         next();
+
     } catch (error) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        res.clearCookie('token');
+        res.redirect('/login');
     }
 };
 
-const guestMiddleware = (req, res, next) => {
-    const token = req.cookies.token;
+const isAuth = (req, res, next) => {
+    if (!req.token) {
+        return res.redirect('/login');
+    }
+    next();
+};
 
-    if (token) {
+const isGuest = (req, res, next) => {
+    if (req.token) {
         return res.redirect('/dashboard');
     }
+
     next();
 };
 
 module.exports = {
     authMiddleware,
-    guestMiddleware
+    isAuth,
+    isGuest
 };
+

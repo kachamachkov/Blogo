@@ -11,6 +11,7 @@ const routes = require('./routes');
 const connectDB = require('./config/db');
 const { isActiveRoute } = require('./helpers/routeHelpers');
 const mongoSession = require('./config/mongoSession');
+const { authMiddleware } = require('./middlewares/authMiddleware');
 
 const app = express();
 const PORT = 5500 || process.env.PORT;
@@ -32,6 +33,7 @@ app.set('view engine', 'ejs');
 
 app.locals.isActiveRoute = isActiveRoute;
 
+app.use(authMiddleware);
 app.use(routes);
 
 app.listen(PORT, () => {

@@ -4,25 +4,28 @@ const bcrypt = require('bcrypt');
 const jwtSecret = process.env.JWT_SECRET;
 
 const User = require('../models/User');
-const { guestMiddleware, authMiddleware } = require('../middlewares/authMiddleware');
-const adminLayout = '../views/layouts/admin';
+const { isGuest, isAuth } = require('../middlewares/authMiddleware');
 
 
-router.get('/login', guestMiddleware, (req, res) => {
-    const locals = {
+router.get('/login', isGuest, (req, res) => {
+    const localsInfo = {
         title: "Admin",
         description: "Admin dashboard for Blogo"
     };
 
     try {
-        res.render('admin/login', { locals, layout: adminLayout });
+        res.render('admin/login', {
+            localsInfo,
+            currentRoute: '/admin'
+
+        });
 
     } catch (error) {
         console.log(error.message);
     }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', isGuest, async (req, res) => {
     const { username, password } = req.body;
 
     try {
@@ -46,19 +49,17 @@ router.post('/login', async (req, res) => {
         res.redirect('/dashboard');
 
     } catch (error) {
-        // TODO: handle error on login
         console.log(error.message);
         res.render('admin/login', {
-
             error,
-            layout: adminLayout
+            currentRoute: '/admin'
         });
 
     }
 
 });
 
-router.get('/logout', authMiddleware, (req, res) => {
+router.get('/logout', isAuth, (req, res) => {
     res.clearCookie('token');
     res.redirect('/');
 });
