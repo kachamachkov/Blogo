@@ -28,8 +28,9 @@ npm run dev
 
 #### Images
 
-![](./src/public//img/demo-picture.png)
-![](./src/public//img/demo-picture2.png)
-![](./src/public//img/demo-picture3.png)
-![](./src/public//img/demo-picture4.png)
-![](./src/public//img/demo-picture5.png)
+![](./src/public//img/demo-picture-1.png)
+![](./src/public//img/demo-picture-2.png)
+![](./src/public//img/demo-picture-3.png)
+![](./src/public//img/demo-picture-4.png)
+![](./src/public//img/demo-picture-5.png)
+![](./src/public//img/demo-picture-6.png)
