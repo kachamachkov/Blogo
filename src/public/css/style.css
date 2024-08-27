@@ -185,6 +185,54 @@ img {
     color: var(--gray);
 }
 
+/* search */
+input[type="search"] {
+    margin: 0.5rem;
+    padding: 0;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    border-radius: 28px;
+    background-color: #f6f6f6;
+    transition: box-shadow 0.25s;
+
+}
+
+.svg-submit{
+    outline: none;
+    background-color: transparent;
+    border: none;
+}
+
+.search:focus-within{
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.75)
+}
+.search-input {
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 14px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 1rem;
+
+}
+
+
+
+.search-input::placeholder,
+.search-icon {
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.search-icon {
+    margin-left: 10px;
+}
+
 /* author - home page */
 .author {
     padding: 10px 0;
@@ -287,43 +335,6 @@ img {
     text-align: center;
 }
 
-/* search bar */
-.searchBar {
-    visibility: hidden;
-    transform: translateY(-100px);
-    background-color: #fbfcdb;
-    padding: 10px 0;
-    position: absolute;
-    left: 0;
-    right: 0;
-}
-
-.searchBar.open {
-    transform: translateY(0);
-    transition: transform 0.1s;
-
-}
-
-.searchBar input {
-    margin: 0;
-    padding: 0;
-}
-
-#searchClose {
-    cursor: pointer;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    color: var(--gray-light);
-    padding: 15px;
-    background-color: var(--black);
-    border: 1px solid black;
-    border-radius: var(--border-radius);
-}
-
-.search__form input {
-    padding: 10px;
-}
 
 
 /* admin */
@@ -338,7 +349,7 @@ img {
     margin: 0;
 }
 
-.admin-post-controls{
+.admin-post-controls {
     display: flex;
 }
 
@@ -384,56 +395,65 @@ img {
 /* delete modal */
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
     background-color: #FAF5EE;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
+    /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 500px; 
+    width: 500px;
     text-align: center;
-  }
-  
-  /* Close Button */
-  .close {
+}
+
+/* Close Button */
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
+}
+
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  }
-  
-  .last-edit{
+}
+
+.last-edit {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-  }
+}
 
-  .last-edit span{
+.last-edit span {
     white-space: initial;
     margin-right: 10px;
     font-weight: bold;
-  }
+}
 
-  .error-msg{
+.error-msg {
     color: var(--red);
-    
-  }
+
+}
