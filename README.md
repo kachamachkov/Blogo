@@ -24,7 +24,7 @@ npm run dev
 
 ```
 
-#### Deployment: https://blogo-rnsg.onrender.com/
+#### Deployment: https://www.blog.kachamachkov.com/
 
 #### Images
 
