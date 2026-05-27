@@ -23,9 +23,6 @@ npm i
 npm run dev
 
 ```
-
-#### Deployment: https://www.blog.kachamachkov.com/
-
 #### Images
 
 ![](./src/public//img/demo-picture-1.png)
